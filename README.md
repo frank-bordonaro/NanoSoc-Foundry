@@ -1,8 +1,10 @@
 # NanoSOC Foundry — Small SOC Suite Starter Kit
 
-**Tagline:** Tiny tools, massive insight — a modular Small-SOC simulator, normalizer, and deception toolkit you can run locally and extend.
+Tiny tools, massive insight — a modular Small-SOC simulator, normalizer, and deception toolkit you can run locally and extend.
 
 ## Overview
+⚠️ **Warning:** This is a work in progress.
+
 NanoSOC Foundry is a ready-to-run starter kit for building a vendor-neutral Small SOC playground. It's designed for security engineers, detection engineers, and sales engineers who want a portable demo environment: generate synthetic alerts, normalize and correlate logs with Sigma-like rules, deploy lightweight deception artifacts such as honeytokens and canaries, and visualize live events in a sleek web UI.
 
 This kit is purposely modular and approachable — everything runs locally and can be extended to push to Elasticsearch, MISP, or a real SIEM.
