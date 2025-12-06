@@ -1,0 +1,41 @@
+
+<svg width="980" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8ecf7"/>
+      <stop offset="100%" stop-color="#f9fbff"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#eef3ff"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="6" refY="6" orient="auto">
+      <polygon points="0,0 14,6 0,12" fill="#3553a5"/>
+    </marker>
+  </defs>
+
+  <rect width="980" height="600" fill="url(#bg)" />
+
+  <text x="490" y="60" text-anchor="middle" font-size="32" fill="#1c2a4a" font-family="Arial">NanoSOC Foundry Architecture</text>
+
+  <!-- Simulator -->
+  <rect x="70" y="150" width="220" height="110" rx="16" fill="url(#card)" stroke="#3553a5" stroke-width="3"/>
+  <text x="180" y="200" text-anchor="middle" font-size="18" fill="#1c2a4a">Simulator</text>
+
+  <!-- Normalizer -->
+  <rect x="380" y="150" width="220" height="110" rx="16" fill="url(#card)" stroke="#3553a5" stroke-width="3"/>
+  <text x="490" y="200" text-anchor="middle" font-size="18" fill="#1c2a4a">Normalizer</text>
+
+  <!-- Deception -->
+  <rect x="690" y="150" width="220" height="110" rx="16" fill="url(#card)" stroke="#3553a5" stroke-width="3"/>
+  <text x="800" y="200" text-anchor="middle" font-size="18" fill="#1c2a4a">Deception Service</text>
+
+  <!-- UI -->
+  <rect x="380" y="360" width="220" height="110" rx="16" fill="url(#card)" stroke="#3553a5" stroke-width="3"/>
+  <text x="490" y="410" text-anchor="middle" font-size="18" fill="#1c2a4a">UI (Viewer)</text>
+
+  <!-- Arrows -->
+  <line x1="290" y1="205" x2="380" y2="205" stroke="#3553a5" stroke-width="4" marker-end="url(#arrow)" />
+  <line x1="600" y1="205" x2="690" y2="205" stroke="#3553a5" stroke-width="4" marker-end="url(#arrow)" />
+  <line x1="490" y1="260" x2="490" y2="360" stroke="#3553a5" stroke-width="4" marker-end="url(#arrow)" />
+</svg>
