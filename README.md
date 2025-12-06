@@ -5,7 +5,7 @@
 ## Overview
 NanoSOC Foundry is a ready-to-run starter kit for building a vendor-neutral Small SOC playground. It's designed for security engineers, detection engineers, and sales engineers who want a portable demo environment: generate synthetic alerts, normalize and correlate logs with Sigma-like rules, deploy lightweight deception artifacts such as honeytokens and canaries, and visualize live events in a sleek web UI.
 
-This kit is purposely modular and approachable — everything runs locally and can be extended to push to Elasticsearch, MISP, or a real SIEM. It is built to work with VSCode + Cline automation agents and your local LLMs (mistral-7b-instruct, qwen2.5-coder-32b).
+This kit is purposely modular and approachable — everything runs locally and can be extended to push to Elasticsearch, MISP, or a real SIEM. 
 
 ---
 ## Contents of this ZIP
@@ -16,9 +16,7 @@ This kit is purposely modular and approachable — everything runs locally and c
 - `ui/` — single-file HTML/JS UI for live event streaming and alert visualization.
 - `orchestrator/` — startup script to run components locally for demos.
 - `docs/` — milestones, microtasks, roadmap, example scenarios, and demo instructions.
-- `cline_prompt.txt` — recommended persistent prompt to give to Cline.
 - `requirements.txt` — top-level Python dependencies for the MVP.
-- `starter.zip` — created by Cline after completing Milestone 2 (optional).
 
 ---
 ## Quickstart (unzip & run demo)
