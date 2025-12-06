@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600">
+  <style>
+    .box { fill:#0f172a; stroke:#94a3b8; stroke-width:1.5; rx:8; }
+    .title { font: bold 16px sans-serif; fill:#e6eef8; }
+    .label { font: 12px sans-serif; fill:#cbd5e1; }
+    .arrow { stroke:#60a5fa; stroke-width:2; marker-end:url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#60a5fa" />
+    </marker>
+  </defs>
+  <rect class="box" x="40" y="40" width="220" height="100" />
+  <text class="title" x="150" y="70" text-anchor="middle">Simulator</text>
+  <text class="label" x="150" y="90" text-anchor="middle">Scenario runner (JSON)</text>
+
+  <rect class="box" x="320" y="40" width="260" height="100" />
+  <text class="title" x="450" y="70" text-anchor="middle">Normalizer / Correlator</text>
+  <text class="label" x="450" y="90" text-anchor="middle">FastAPI, Sigma-lite rules</text>
+
+  <rect class="box" x="620" y="40" width="320" height="100" />
+  <text class="title" x="780" y="70" text-anchor="middle">UI</text>
+  <text class="label" x="780" y="90" text-anchor="middle">Live stream, Alerts, Controls</text>
+
+  <line class="arrow" x1="260" y1="90" x2="320" y2="90" />
+  <line class="arrow" x1="580" y1="90" x2="620" y2="90" />
+
+  <rect class="box" x="120" y="180" width="220" height="90" />
+  <text class="title" x="230" y="210" text-anchor="middle">Deception</text>
+  <text class="label" x="230" y="230" text-anchor="middle">Honeytokens, HTTP honeypot</text>
+
+  <line class="arrow" x1="230" y1="180" x2="230" y2="140" />
+
+  <rect class="box" x="400" y="260" width="320" height="90" />
+  <text class="title" x="560" y="290" text-anchor="middle">Optional</text>
+  <text class="label" x="560" y="310" text-anchor="middle">Elastic, MISP, Message bus</text>
+
+  <line class="arrow" x1="420" y1="180" x2="420" y2="250" />
+</svg>

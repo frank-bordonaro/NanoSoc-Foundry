@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NanoSOC Foundry — Live</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    :root { 
+      --bg:#0b1220; 
+      --panel:#0f1724; 
+      --muted:#94a3b8; 
+      --accent:#60a5fa; 
+      --glass: rgba(255,255,255,0.03); 
+      --info:#60a5fa; 
+      --alert:#facc15; 
+      --error:#f87171; 
+    }
+    body {
+      font-family:Inter,ui-sans-serif,system-ui;
+      background:linear-gradient(180deg,#020617, #07102a);
+      color:#e6eef8;
+      padding:18px
+    }
+    .app {
+      display:grid;
+      grid-template-columns:280px 1fr 320px;
+      gap:16px;
+      height:86vh
+    }
+    .panel {
+      background:var(--panel);
+      border-radius:12px;
+      padding:12px;
+      box-shadow:0 6px 18px rgba(2,6,23,0.6)
+    }
+    .controls button {
+      background:var(--accent);
+      border:none;
+      padding:8px 12px;
+      border-radius:8px;
+      color:#041025;
+      cursor:pointer
+    }
+    .stream {
+      height:70vh;
+      overflow:auto;
+      background:var(--glass);
+      padding:8px;
+      border-radius:8px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<h2>NanoSOC Foundry — Live Demo</h2>
+
+<div class="app">
+  <div class="panel controls">
+    <h3>Controls</h3>
+
+    <p><button id="startScenario">Run Lateral Movement</button></p>
+    <p><button id="genToken">Create Honeytoken</button></p>
+
+    <div id="tokenOut" style="margin-top:8px;color:var(--muted)"></div>
+  </div>
+
+  <div class="panel">
+    <h3>Event Stream</h3>
+    <div class="stream" id="stream"></div>
+  </div>
+
+  <div class="panel">
+    <h3>Alerts</h3>
+    <div id="alerts"></div>
+  </div>
+</div>
+
+<script>
+
+// ---------- BUTTON HANDLERS ----------
+document.getElementById("startScenario").onclick = async () => {
+    await fetch("http://localhost:8002/run_scenario?name=lateral_movement");
+};
+
+document.getElementById("genToken").onclick = async () => {
+    const r = await fetch("http://localhost:8001/create_token"); 
+    const data = await r.json();
+    document.getElementById("tokenOut").textContent = "Honeytoken created: " + (data.token || "unknown");
+};
+
+
+// ---------- EVENT POLLING ----------
+async function loadEvents() {
+    try {
+        const res = await fetch("http://localhost:8002/events.json");
+        const events = await res.json();
+
+        const stream = document.getElementById("stream");
+        stream.innerHTML = "";
+
+        events.slice().reverse().forEach(ev => {
+            const div = document.createElement("div");
+
+            // HUMAN TIMESTAMP
+            const ts = new Date(ev.timestamp * 1000).toLocaleString();
+
+            // COLOR
+            let color = "#ffffff";
+
+            if (ev.level === "error") color = "var(--error)";
+            if (ev.level === "alert") color = "var(--alert)";
+            if (ev.event_type === "scenario_status") color = "var(--info)";
+            if (ev.event_type === "process_create") color = "#00ccff";
+            if (ev.event_type === "auth_success") color = "#80ff80";
+
+            // CLEAN MESSAGE HANDLING
+            let messageText = ev.message;
+
+            // If message is an object (simulator events), pretty-print it
+            if (typeof ev.message === "object") {
+                messageText = JSON.stringify(ev.message, null, 2);
+            } 
+            else {
+                // Try to JSON-decode if it's a JSON string
+                try {
+                    const parsed = JSON.parse(ev.message);
+                    messageText = JSON.stringify(parsed, null, 2);
+                } catch (e) {
+                    // leave as plain string
+                }
+            }
+
+            div.style.color = color;
+            div.style.whiteSpace = "pre-wrap";
+            div.textContent = `[${ts}] ${messageText}`;
+            stream.appendChild(div);
+        });
+
+    } catch (err) {
+        console.error("Event load error:", err);
+    }
+}
+
+setInterval(loadEvents, 1500);
+loadEvents();
+
+</script>
+<script>
+document.getElementById("genToken").onclick = async () => {
+    const out = document.getElementById("tokenOut");
+    out.textContent = "Creating…";
+
+    try {
+        const res = await fetch("http://localhost:8002/create_honeytoken");
+        const data = await res.json();
+
+        if (data.token) {
+            out.textContent = "Honeytoken: " + data.token;
+        } else {
+            out.textContent = "Error: no token returned";
+        }
+    } catch (err) {
+        out.textContent = "Error calling API";
+        console.error(err);
+    }
+};
+</script>
+</body>
+</html>

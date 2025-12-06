@@ -1,0 +1,7 @@
+{
+  "description": "data exfil demo",
+  "events": [
+    {"timestamp": "2025-12-02T09:00:00Z", "host": "host-3", "event_type": "auth_success", "user": "bob", "src_ip": "10.0.0.6", "dst_ip": "10.0.0.30", "delay": 0.2},
+    {"timestamp": "2025-12-02T09:05:00Z", "host": "host-3", "event_type": "file_write", "file": "/tmp/report.zip", "size_mb": 1200, "user": "bob", "delay": 0.4}
+  ]
+}

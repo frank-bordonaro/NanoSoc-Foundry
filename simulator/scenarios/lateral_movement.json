@@ -1,0 +1,7 @@
+{
+  "description": "lateral movement demo",
+  "events": [
+    {"timestamp": "2025-12-01T10:00:00Z", "host": "host-1", "event_type": "auth_success", "user": "alice", "src_ip": "10.0.0.5", "dst_ip": "10.0.0.20", "delay": 0.5},
+    {"timestamp": "2025-12-01T10:02:00Z", "host": "host-2", "event_type": "process_create", "process": "psexec.exe", "user": "alice", "src_ip": "10.0.0.5", "dst_ip": "10.0.0.20", "delay": 1.0}
+  ]
+}
