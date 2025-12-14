@@ -1,7 +1,7 @@
 # Microtasks for Cline — NanoSOC Foundry (40 tasks)
 
-1. Create repo skeleton and add README.md (top-level) and LICENSE.
-2. Add requirements.txt and a top-level .gitignore.
+[x] 1. Create repo skeleton and add README.md (top-level) and LICENSE.
+[x] 2. Add requirements.txt and a top-level .gitignore.
 3. Implement `normalizer/app.py` (FastAPI) with /ingest endpoint.
 4. Implement `normalizer/normalizer_core.py` with normalize(raw_event) function and unit tests.
 5. Add basic Sigma-lite rule loader `normalizer/rules/loader.py`.
